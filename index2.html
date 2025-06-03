@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShayArman - A World of Beautiful Shayaris<br> (हर दिल की पसंद)</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #70368a;
+            --secondary-color: #9b59b6;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: whitesmoke;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--light-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--light-color);
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url(image.png) no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Categories Section */
+        
+        .categories {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-img {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-content {
+            padding: 1.5rem;
+        }
+        
+        .category-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .category-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        /* Shayari Feed Section */
+        .shayari-feed {
+            padding: 4rem 0;
+            background: #f9f9f9;
+        }
+        
+        .shayari-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .shayari-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .shayari-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 8px 0 0 8px;
+        }
+        
+        .shayari-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .shayari-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .shayari-category {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Admin Panel (for adding new shayaris) */
+        .admin-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            display: none; /* Hidden by default */
+        }
+        
+        .shayari-actions {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .edit-btn {
+            background: #3498db !important;
+            margin-right: 10px;
+        }
+        
+        .edit-btn:hover {
+            background: #00f836 !important;
+        }
+        
+        .delete-btn {
+            background: #e74c3c !important;
+        }
+        
+        .delete-btn:hover {
+            background: #c0392b !important;
+        }
+        
+        .admin-panel h3 {
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .member-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-member:hover .member-img img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+        }
+        
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .member-role {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .member-contact {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .member-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: var(--light-color);
+            border-radius: 50%;
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+        
+        .member-social a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Community Section */
+        .community {
+            padding: 4rem 0;
+        }
+        
+        .community-grid {
+            
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .community-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .community-card:hover {
+             background: url(image.png) no-repeat center center/cover;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .community-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .community-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--light-color);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.7rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="ShayArmanLogo.png" alt="ShayArman Logo" class="logo-img">
+                <div class="logo-text">Shay<span>Arman</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#shayaris">Shayaris</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#" id="admin-toggle">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Express Your Emotions With Beautiful Shayaris<br>ShayArman<br>❣️हर दिल की पसंद❣️</h1>
+            <p>Discover the perfect words to express love, pain, happiness, and every emotion in between. Join our community of Shayari lovers.</p>
+            <a href="#shayaris" class="btn">Read Shayaris</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Shayari Categories</h2>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Love Shayari">
+                    </div>
+                    <div class="category-content">
+                        <h3>Heart Touch</h3>
+                        <p>Beautiful shayaris that touch your heart and soul.</p>
+                        <a href="#shayaris" class="btn" data-category="heart">Read More</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://wallpapers.com/images/hd/broken-heart-photography-art-n4kxsn6fx86y9zfl.jpg" alt="Broken Heart">
+                    </div>
+                    <div class="category-content">
+                        <h3>Broken Heart</h3>
+                        <p>Express your pain through these emotional shayaris.</p>
+                        <a href="#shayaris" class="btn" data-category="broken">Read More</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://th.bing.com/th/id/OIP.WVBeLZkhOQnoGlC8NUgr9gHaE8?rs=1&pid=ImgDetMain" alt="Motivation">
+                    </div>
+                    <div class="category-content">
+                        <h3>Motivation</h3>
+                        <p>Inspirational shayaris to lift your spirits.</p>
+                        <a href="#shayaris" class="btn" data-category="motivation">Read More</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://thumbs.dreamstime.com/b/six-family-member-beach-silhouette-sunset-75555773.jpg" alt="Family">
+                    </div>
+                    <div class="category-content">
+                        <h3>Family</h3>
+                        <p>Shayaris dedicated to parents and family bonds.</p>
+                        <a href="#shayaris" class="btn" data-category="family">Read More</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://parade.com/.image/t_share/MTkwNTgxMjEzMzExNjczNDY5/long-distance-relationship-quotes-jpg.jpg" alt="Long Distance">
+                    </div>
+                    <div class="category-content">
+                        <h3>Long Distance</h3>
+                        <p>Shayaris for those separated by distance.</p>
+                        <a href="#shayaris" class="btn" data-category="distance">Read More</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Life">
+                    </div>
+                    <div class="category-content">
+                        <h3>Life</h3>
+                        <p>Philosophical shayaris about life's journey.</p>
+                        <a href="#shayaris" class="btn" data-category="life">Read More</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://media.istockphoto.com/id/1447126543/photo/father-bonding-kiss-and-boy-child-hug-happy-in-nature-with-quality-time-together-outdoor.jpg?s=612x612&w=0&k=20&c=iujHdzYFrmfLgVLKcAzu4y1-awTR2xRo5m-rD9w35wU=" alt="Love tour Father">
+                    </div>
+                    <div class="category-content">
+                        <h3>Father</h3>
+                        <p>Express your love for your father , your power and your strength.</p>
+                        <a href="#shayaris" class="btn" data-category="father">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shayari Feed Section -->
+    <section class="shayari-feed" id="shayaris">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Shayaris</h2>
+            </div>
+            <div class="shayari-container" id="shayari-container">
+                <!-- Shayaris will be loaded here dynamically -->
+            </div>
+            
+            <!-- Admin Panel (hidden by default) -->
+            <div class="admin-panel" id="admin-panel">
+                <h3>Add New Shayari</h3>
+                <form id="shayari-form">
+                    <div class="form-group">
+                        <label for="shayari-text">Shayari Text</label>
+                        <textarea id="shayari-text" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="shayari-category">Category</label>
+                        <select id="shayari-category" required>
+                            <option value="">Select Category</option>
+                            <option value="heart">Heart Touch</option>
+                            <option value="broken">Broken Heart</option>
+                            <option value="motivation">Motivation</option>
+                            <option value="family">Family</option>
+                            <option value="distance">Long Distance</option>
+                            <option value="life">Life</option>
+                            <option value="father">Father (Strength)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" id="submit-btn">Post Shayari</button>
+                    <button type="button" class="btn" id="cancel-edit" style="display: none; background: #95a5a6;">Cancel</button>
+                    <button type="button" class="btn" id="logout-btn" style="background: #e74c3c; margin-left: 10px;">Logout</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>The creative minds behind ShayArman</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="oo.jpg" alt="Founder">
+                    </div>
+                    <div class="member-info">
+                        <h3>Arman Alii</h3>
+                        <span class="member-role">Founder & CEO</span>
+                        <div class="member-contact">arman073ali@gmail.com</div>
+                        <div class="member-social">
+                            <a href="https://facebook.com/salmanali" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/armanalii07" target="_blank"><i class="fab fa-x"></i></a>
+                            <a href="https://www.instagram.com/armanalii07?igsh=eW5zNHZmMW1mZHIz" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="salmanimage.jpg" alt="Editor">
+                    </div>
+                    <div class="member-info">
+                        <h3>Salman Ali</h3>
+                        <span class="member-role">Chief Editor</span>
+                        <div class="member-contact">salmanaliking760@gmail.com</div>
+                        <div class="member-social">
+                            <a href="https://facebook.com/armanbabu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-x"></i></a>
+                            <a href="https://www.instagram.com/salmanaliking760?igsh=eW5zNHZmMW1mZHIz" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="sahibaimage.jpg" alt="Poet">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sahiba Khatoon</h3>
+                        <span class="member-role">Lead Poet</span>
+                        <div class="member-contact">sahibakhatoon77@gmail.com</div>
+                        <div class="member-social">
+                            <a href="https://facebook.com/alii" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-x"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="sabyaimage.jpg" alt="Designer">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sabya Khatoon</h3>
+                        <span class="member-role">Creative Director</span>
+                        <div class="member-contact">sabyakhatoon77@gmail.com</div>
+                        <div class="member-social">
+                            <a href="https://x.com/arman073ali" target="_blank"><i class="fab fa-x"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Community</h2>
+            </div>
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-icon">👥</div>
+                    <h3>Shayari Lovers</h3>
+                    <p>Join thousands of Shayari enthusiasts who share and appreciate beautiful words.</p>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">✍️</div>
+                    <h3>Writers Community</h3>
+                    <p>Connect with fellow writers and get feedback on your creative work.</p>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">💬</div>
+                    <h3>Discussion Forums</h3>
+                    <p>Engage in meaningful discussions about poetry, literature, and emotions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Shayarman</h2>
+                    <p><i>ShayArman is a platform dedicated to preserving and promoting the beautiful art of Shayari. Our mission is to provide a space where emotions find the perfect words.</p>
+                    <p>Founded in 25th may 2025, we've grown into a vibrant community of Shayari lovers, writers, and readers who appreciate the depth and beauty of this poetic form.</p>
+                    <p>Whether you're looking to express your feelings or find comfort in words that resonate with your emotions, ShayArman is here for you.</p></i><b>
+                    <p>बचपन से ही मुझे शायरी लिखने और पढ़ने का बहुत शौक था और कभी-कभी जब मैं बहुत अच्छी शायरी लिख लेता था और उसे पढ़ता था तो मैं कहता था कि क्या मैंने वाकई ये लिखा है<br>
+                         लेकिन उस समय मुझे ये एहसास नहीं था कि शायरी लिखना और उसे उस तरह से पढ़ना अल्लाह/ईश्वर का दिया हुआ एक तोहफा है और ये बात मुझे बाद में समझ आई और आज मैं अपनी उस कला,<br>
+                             उस हुनर ​​को इस वेबसाइट के माध्यम से आप सभी के साथ 25 जून 2025 से शेयर कर रहा हूँ और मुझे उम्मीद है कि आप सभी को ये सारी चीजें बहुत पसंद आएंगी।</p></b>
+                    <a href="#community" class="btn">Thank you so much everyone<br>
+                    धन्यवाद</a>
+                </div>
+                <div class="about-img">
+                    <img src="ShayArmanLogo.png" alt="About ShayArman">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>ShayArman</h3>
+                    <div class="logo-container" style="justify-content: flex-start; margin-bottom: 1rem;">
+                        <img src="logo.jpg" alt="ShayArman Logo" class="logo-img">
+                        <div class="logo-text" style="font-size: 1.5rem;">Shay<span>Arman</span></div>
+                    </div>
+                    <p>A platform dedicated to beautiful Shayaris that express every emotion of life.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/armanalii07" target="_blank"><i class="fab fa-x"></i></a>
+                        <a href="https://www.instagram.com/armanalii07?igsh=eW5zNHZmMW1mZHIz" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@ViralVines.shorts" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#shayaris">Shayaris</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#shayaris" data-category="heart">Heart Touch</a></li>
+                        <li><a href="#shayaris" data-category="broken">Broken Heart</a></li>
+                        <li><a href="#shayaris" data-category="motivation">Motivation</a></li>
+                        <li><a href="#shayaris" data-category="family">Family</a></li>
+                        <li><a href="#shayaris" data-category="distance">Long Distance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: armanaliking777@gmail.com</li>
+                        <li>Phone: +191 7379169973</li>
+                        <li>Address: Vill. Dubauli Post Fazilnagar Dist Kushinagar UP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> ShayArman. All Rights Reserved.<br> THANKS FOR VISITING MY WEBSITE</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ADMIN AUTHENTICATION SYSTEM
+        const ADMIN_PASSWORD = "ShayArman@07"; // I can Change it password
+        
+        // DOM Elements
+        const shayariContainer = document.getElementById('shayari-container');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminToggle = document.getElementById('admin-toggle');
+        const shayariForm = document.getElementById('shayari-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit');
+        const logoutBtn = document.getElementById('logout-btn');
+        const categoryLinks = document.querySelectorAll('[data-category]');
+        
+        // Initialize shayaris from localStorage or use default
+        let shayaris = JSON.parse(localStorage.getItem('shayaris')) || [
+             {
+                id: 1,
+                text: "मैं कहता नहीं कि  मैं शायर हूँ\n  पर मोहब्बत में मई भी घायल हूँ\n  मिलता नहीं कुछ दर्द छिपाने को\n  इसीलिए आज एक अच्छा शायर हूँ",
+                category: "heart",
+                date: "2023-05-15"
+            },
+            {
+            id: 1,
+                text: "zindagi ka har oo lamha yaad aayega \nmile jo the hm bs wahi yaad me rah jayega\nyun to sab karte hain mohabbat mere dost \n par meri mohabbat sabko nazar aayega",
+                
+                category: "heart",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 2,
+                text: "tute dil ka haal bata skta hu,\naashik hun zazbaat bata skta hu \nyunn hi thodi guzara hai ishq ke pal me zindagi\n khud ke saath tujhe bhi samjha skta hu।",
+                category: "broken",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 2,
+                text: "nahi tha oo apna phir bhi apna lga\n thi puri haqiqat phir bhi sab kuchh sapna lga \nhme lga tha ki itani haseen ho nahi skti haqiqat \nphir pata chala ki oo kisis aur ka bhi apna laga",
+                category: "broken",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 2,
+                text: "khud ko khoya tha to tijhe paya tha \nmere sath koi aur nahi mere khud ka shaya tha\nmujhe lga meri maut ek mahaz ettefaque hai\n pay baad pata chala ki oo apno ka rachaya maya tha",
+                category: "broken",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 2,
+                text: "thi fitrat unki zahar ugalane ki \nhamne to kuchh lafz bola tha\nmeri chahat thi ki pilaau unhe aab e zamzam\npar mere gilas me unhone zahar ghola tha।",
+                category: "broken",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 2,
+                text: "thi aarzu - e - khawaish mil pane ki\ndil lagakar zindagi saath nibhane ki\nkahan puri hoti hai aarzu - e - khwaish sabki e Arman\nthi mere kismat me bhi ek baar milkar bichhad jane ki",
+                category: "broken",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 3,
+                text: "mai aag hun sab kuchh zala skta hun,\nmai charag bhi jo andhkar mita skta hun\nmat dhundho mujhe registan ke ret me \n mai oo tufaan hun jo sab kuchh uda skta hun...",
+                category: "motivation",
+               date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 4,
+                text: "jishm mein dard aankho me nami thi\nchand lamho baad badi khushi thi\naksar beton ke rone par ro detin hain maayen\npar aaj mere rone par maa muskuraii thi",
+                category: "family",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 5,
+                text: "mehfeel me baith unhe yaad karta hun\nye kaam main bar  bar harbaar karta hun\nmain rah nahi sakta ab unse mile bagair\nisiliye unke aane ka intezaar karta hun",
+                category: "distance",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 5,
+                text: "hai dil ki tamannaab bulaaun tujhe\nab mobile se waise baat nahi hoto\nkhwaish hai ki gale se lagau tujhe\nab door rahna dil ko bardast nahi hoti",
+                category: "distance",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 5,
+                text: "eh shahar tha jo anjan tha\n waha rahta ek sakhsh meri jaan tha\ndard to dete hain apne bahut\nmohabbat to uun hii badnaam tha",
+                category: "distance",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            },
+            {
+                id: 5,
+                text: "hai itna faasla phir bhi kareeb hain ham\npahli mulakat ke bahut kareeb hain ham\nhai mohabbat ki itani badi daulat mere pass\nphir bhi duniya ke nazroo me gareeb hain ham",
+                category: "distance",
+                date: "2025-05-13"
+            },
+            {
+                id: 5,
+                text: "hai oo chahat meri mai uska diwana hun\nagar oo sama hai to mai uska parwana hun\nusaki muskurahat se bikharati hai chandani\nmai samandar hun uska aur mai hii kinara hun",
+                category: "distance",
+                date: "2025-05-13"
+            },
+            {
+                id: 6,
+                text: "mizane khalas me tera ehtaram karta hun\naaye mehfeel me sabko salam karta hun\nmai oo nahi jo chhi kar karun buraaii\njo bhi karta hun sareaam karta hun",
+                category: "life",
+                date: new Date().toISOString().split('T')[0] // "YYYY-MM-DD"
+            }
+        ];
+        
+        // Save shayaris to localStorage
+        function saveShayaris() {
+            localStorage.setItem('shayaris', JSON.stringify(shayaris));
+        }
+        
+        // Display current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Display all shayaris
+        function displayShayaris(filterCategory = '') {
+            shayariContainer.innerHTML = '';
+            
+            let filteredShayaris = shayaris;
+            if (filterCategory) {
+                filteredShayaris = shayaris.filter(shayari => shayari.category === filterCategory);
+            }
+            
+            // Sort by date (newest first)
+            filteredShayaris.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            filteredShayaris.forEach(shayari => {
+                const categoryNames = {
+                    'heart': 'Heart Touch',
+                    'broken': 'Broken Heart',
+                    'motivation': 'Motivation',
+                    'family': 'Family',
+                    'distance': 'Long Distance',
+                    'life': 'Life',
+                    'father': 'Father'
+                };
+                
+                const shayariCard = document.createElement('div');
+                shayariCard.className = 'shayari-card';
+                shayariCard.innerHTML = `
+                    <div class="shayari-text">${shayari.text.replace(/\n/g, '<br>')}</div>
+                    <div class="shayari-meta">
+                        <span class="shayari-category">${categoryNames[shayari.category]}</span>
+                        <span class="shayari-date">Posted on ${formatDate(shayari.date)}</span>
+                    </div>
+                    ${isAdminAuthenticated() ? `
+                    <div class="shayari-actions">
+                        <button class="btn edit-btn" data-id="${shayari.id}">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn delete-btn" data-id="${shayari.id}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                    ` : ''}
+                `;
+                shayariContainer.appendChild(shayariCard);
+            });
+            
+            // Add event listeners for edit and delete buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => editShayari(parseInt(btn.dataset.id)));
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => deleteShayari(parseInt(btn.dataset.id)));
+            });
+        }
+        
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+        
+        // ADMIN FUNCTIONS
+        function isAdminAuthenticated() {
+            return localStorage.getItem('adminAuthenticated') === 'true';
+        }
+        
+        function showAdminPanel() {
+            adminPanel.style.display = 'block';
+            adminToggle.innerHTML = '<i class="fas fa-lock-open"></i> Admin';
+            adminToggle.style.color = '#2ecc71';
+        }
+        
+        function hideAdminPanel() {
+            adminPanel.style.display = 'none';
+            adminToggle.innerHTML = '<i class="fas fa-lock"></i> Admin';
+            adminToggle.style.color = '';
+        }
+        
+        function adminLogin() {
+            const enteredPassword = prompt("Please enter admin password:");
+            
+            if (enteredPassword === ADMIN_PASSWORD) {
+                localStorage.setItem('adminAuthenticated', 'true');
+                showAdminPanel();
+                displayShayaris(); // Refresh to show edit/delete buttons
+                return true;
+            } else if (enteredPassword !== null) {
+                alert("Incorrect password. Access denied.");
+            }
+            return false;
+        }
+        
+        function adminLogout() {
+            localStorage.removeItem('adminAuthenticated');
+            hideAdminPanel();
+            displayShayaris(); // Refresh to hide edit/delete buttons
+            alert('Logged out successfully.');
+        }
+        
+        // Edit shayari
+        function editShayari(id) {
+            const shayari = shayaris.find(s => s.id === id);
+            if (!shayari) return;
+            
+            // Fill the form with existing data
+            document.getElementById('shayari-text').value = shayari.text;
+            document.getElementById('shayari-category').value = shayari.category;
+            
+            // Change the form to update mode
+            shayariForm.dataset.editingId = id;
+            submitBtn.textContent = 'Update Shayari';
+            cancelEditBtn.style.display = 'inline-block';
+            
+            // Scroll to the form
+            adminPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Delete shayari
+        function deleteShayari(id) {
+            if (confirm('Are you sure you want to delete this Shayari?')) {
+                shayaris = shayaris.filter(s => s.id !== id);
+                saveShayaris();
+                displayShayaris();
+                alert('Shayari deleted successfully.');
+            }
+        }
+        
+        // EVENT LISTENERS
+        adminToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if (isAdminAuthenticated()) {
+                adminLogout();
+            } else {
+                adminLogin();
+            }
+        });
+        
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            adminLogout();
+        });
+        
+        shayariForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const text = document.getElementById('shayari-text').value;
+            const category = document.getElementById('shayari-category').value;
+            
+            if (text && category) {
+                // If editing an existing shayari
+                if (shayariForm.dataset.editingId) {
+                    const id = parseInt(shayariForm.dataset.editingId);
+                    const index = shayaris.findIndex(s => s.id === id);
+                    
+                    if (index !== -1) {
+                        shayaris[index] = {
+                            ...shayaris[index],
+                            text: text,
+                            category: category
+                        };
+                        
+                        saveShayaris();
+                        alert('Shayari updated successfully!');
+                    }
+                } 
+                // If adding a new shayari
+                else {
+                    const newShayari = {
+                        id: shayaris.length > 0 ? Math.max(...shayaris.map(s => s.id)) + 1 : 1,
+                        text: text,
+                        category: category,
+                        date: new Date().toISOString().split('T')[0]
+                    };
+                    
+                    shayaris.unshift(newShayari);
+                    saveShayaris();
+                    alert('Shayari added successfully!');
+                }
+                
+                // Reset form and display
+                shayariForm.reset();
+                delete shayariForm.dataset.editingId;
+                submitBtn.textContent = 'Post Shayari';
+                cancelEditBtn.style.display = 'none';
+                displayShayaris();
+                window.location.hash = '#shayaris';
+            }
+        });
+        
+        cancelEditBtn.addEventListener('click', () => {
+            shayariForm.reset();
+            delete shayariForm.dataset.editingId;
+            submitBtn.textContent = 'Post Shayari';
+            cancelEditBtn.style.display = 'none';
+        });
+        
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.dataset.category) {
+                    e.preventDefault();
+                    displayShayaris(link.dataset.category);
+                    window.location.hash = '#shayaris';
+                }
+            });
+        });
+        
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isAdminAuthenticated()) {
+                showAdminPanel();
+            }
+            displayShayaris();
+        });
+    </script>
+</body>
+</html>
